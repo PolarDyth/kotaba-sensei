@@ -34,7 +34,7 @@ export function ThemeToggle() {
       <motion.div
         initial={false}
         animate={{ rotate: theme === "dark" ? 0 : 180 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" as const }}
       >
         {theme === "dark" ? (
           <Sun className="size-4" />
