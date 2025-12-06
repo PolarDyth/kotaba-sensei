@@ -235,4 +235,37 @@
   .glow-primary-lg {
     box-shadow: 0 0 80px rgba(228, 90, 122, 0.2);
   }
+
+  /* Background blobs for visual depth */
+  .blob-pink {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(228, 90, 122, 0.08) 0%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  .blob-indigo {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(81, 103, 168, 0.08) 0%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  .blob-pink-subtle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(228, 90, 122, 0.05) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  .blob-indigo-subtle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(81, 103, 168, 0.05) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+  }
 }

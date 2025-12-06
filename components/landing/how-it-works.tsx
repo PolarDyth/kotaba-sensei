@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { BookOpen, MessageCircle, Brain } from "lucide-react"
+import { fadeInUp, staggerContainer, staggerItem, viewportOnce } from "@/lib/animations"
 
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -26,37 +27,15 @@ const steps = [
   },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
-}
-
 export function HowItWorks() {
   return (
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-text-primary">
@@ -68,15 +47,19 @@ export function HowItWorks() {
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={viewportOnce}
           className="grid md:grid-cols-3 gap-6 lg:gap-8"
         >
           {steps.map((step, index) => (
-            <motion.div key={step.title} variants={cardVariants}>
-              <Card className="h-full hover:border-primary/20 transition-colors group">
+            <motion.div
+              key={step.title}
+              variants={staggerItem}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            >
+              <Card className="h-full group">
                 <CardContent className="pt-2">
                   <div className="flex flex-col items-center text-center">
                     {/* Step number */}
@@ -108,4 +91,3 @@ export function HowItWorks() {
     </section>
   )
 }
-

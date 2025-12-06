@@ -19,8 +19,14 @@ const maxMinutes = Math.max(...weeklyData.map((d) => d.minutes))
 
 export function SeriousLearners() {
   return (
-    <section className="py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-20 sm:py-28 relative overflow-hidden">
+      {/* Background blobs - diffuse for smooth transitions */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-primary/[0.04] blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-indigo-accent/[0.03] blur-[80px]" />
+      </div>
+      
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left column - Copy */}
           <motion.div

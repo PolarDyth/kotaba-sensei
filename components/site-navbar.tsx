@@ -9,10 +9,10 @@ import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 const navLinks = [
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/tutor", label: "Tutor" },
-  { href: "/textbook", label: "Textbook" },
-  { href: "/progress", label: "Progress" },
+  { href: "/app/dashboard", label: "Dashboard" },
+  { href: "/app/tutor", label: "Tutor" },
+  { href: "/app/textbook", label: "Textbook" },
+  { href: "/app/progress", label: "Progress" },
 ]
 
 export function SiteNavbar() {
@@ -47,7 +47,7 @@ export function SiteNavbar() {
             >
               <Link
                 href={link.href}
-                className="px-4 py-2 text-sm text-text-secondary hover:text-text-primary transition-colors rounded-lg hover:bg-surface-alt/50"
+                className="px-4 py-2 text-sm text-text-secondary hover:text-text-primary transition-colors rounded-lg hover:bg-surface-alt/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
               >
                 {link.label}
               </Link>
@@ -73,12 +73,14 @@ export function SiteNavbar() {
           {/* Auth buttons - Desktop */}
           <div className="hidden sm:flex items-center gap-2 ml-2">
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-              <Button variant="ghost" size="sm">
-                Log in
+              <Button variant="ghost" size="sm" asChild>
+                <Link href="/login">Log in</Link>
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-              <Button size="sm">Get started</Button>
+              <Button size="sm" asChild>
+                <Link href="/register">Get started</Link>
+              </Button>
             </motion.div>
           </div>
 
@@ -114,17 +116,19 @@ export function SiteNavbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block px-4 py-3 text-sm text-text-secondary hover:text-text-primary hover:bg-surface-alt rounded-lg transition-colors"
+                  className="block px-4 py-3 text-sm text-text-secondary hover:text-text-primary hover:bg-surface-alt rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
               <div className="pt-4 flex flex-col gap-2 border-t border-white/5">
-                <Button variant="ghost" className="justify-start">
-                  Log in
+                <Button variant="ghost" className="justify-start" asChild>
+                  <Link href="/login">Log in</Link>
                 </Button>
-                <Button className="justify-start">Get started</Button>
+                <Button className="justify-start" asChild>
+                  <Link href="/register">Get started</Link>
+                </Button>
               </div>
             </div>
           </motion.div>
@@ -133,4 +137,3 @@ export function SiteNavbar() {
     </header>
   )
 }
-

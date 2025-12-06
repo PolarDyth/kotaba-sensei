@@ -9,6 +9,7 @@ import {
   BarChart3,
   GraduationCap,
 } from "lucide-react"
+import { fadeInUp, staggerContainer, staggerItem, viewportOnce } from "@/lib/animations"
 
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -51,37 +52,15 @@ const features = [
   },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut" as const,
-    },
-  },
-}
-
 export function FeatureGrid() {
   return (
     <section className="py-20 sm:py-28 bg-surface-alt/30">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-text-primary">
@@ -93,15 +72,19 @@ export function FeatureGrid() {
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={viewportOnce}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {features.map((feature) => (
-            <motion.div key={feature.title} variants={cardVariants}>
-              <Card className="h-full hover:border-primary/20 transition-all hover:shadow-lg hover:shadow-primary/5 group">
+            <motion.div
+              key={feature.title}
+              variants={staggerItem}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            >
+              <Card className="h-full group">
                 <CardContent>
                   <div className="flex items-start gap-4">
                     {/* Icon */}
@@ -130,4 +113,3 @@ export function FeatureGrid() {
     </section>
   )
 }
-

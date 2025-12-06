@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, Play, Volume2, Target, Flame, TrendingUp } from "lucide-react"
 
@@ -21,10 +22,10 @@ const staggerContainer = {
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-28 lg:py-32">
-      {/* Background gradient blobs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -right-1/4 w-[600px] h-[600px] rounded-full bg-primary-subtle/10 blur-3xl" />
-        <div className="absolute -bottom-1/4 -left-1/4 w-[500px] h-[500px] rounded-full bg-indigo-accent/10 blur-3xl" />
+      {/* Background gradient blobs - diffuse for smooth transitions */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-1/4 right-0 w-[700px] h-[700px] rounded-full bg-primary/[0.06] blur-[120px]" />
+        <div className="absolute top-1/2 -left-1/4 w-[600px] h-[600px] rounded-full bg-indigo-accent/[0.05] blur-[100px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -63,9 +64,11 @@ export function HeroSection() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Button size="lg" className="gap-2">
-                  Start learning
-                  <ArrowRight className="size-4" />
+                <Button size="lg" className="gap-2" asChild>
+                  <Link href="/register">
+                    Start learning
+                    <ArrowRight className="size-4" />
+                  </Link>
                 </Button>
               </motion.div>
               <motion.div
@@ -173,4 +176,3 @@ export function HeroSection() {
     </section>
   )
 }
-
